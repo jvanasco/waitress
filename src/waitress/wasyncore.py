@@ -370,8 +370,15 @@ class dispatcher:
         return self.socket.listen(num)
 
     def bind(self, addr):
+        # self.logger.log(logging.DEBUG, "Attempting to bind to: %s" % addr)
         self.addr = addr
-        return self.socket.bind(addr)
+        try:
+            return self.socket.bind(addr)
+        except Exception as exc:
+            self.logger.log(logging.CRITICAL, "Failed bind to: %s" % addr)
+            self.logger.log(logging.CRITICAL, "Exception raised: %s" % str(addr))
+            raise
+
 
     def accept(self):
         # XXX can return either an address pair or None
