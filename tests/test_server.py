@@ -324,9 +324,10 @@ class TestWSGIServer(unittest.TestCase):
         with self.assertLogs("waitress", level="ERROR") as cm_log:
             with self.assertRaises(OSError) as cm:
                 inst_c = self._makeOne(port=8080)
-            self.assertEqual(
-                str(cm.exception),
-                "[Errno 48] Address already in use",
+            self.assertTrue(
+                ("[Errno 48] Address already in use" == str(cm.exception))
+                or
+                ("[Errno 98] Address already in use" == str(cm.exception))
             )
 
         self.assertIn(
