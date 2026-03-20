@@ -1,5 +1,6 @@
 import errno
 import socket
+import sys
 import unittest
 
 dummy_app = object()
@@ -311,6 +312,10 @@ class TestWSGIServer(unittest.TestCase):
         self.assertListEqual(innersock.opts, [("level", "optname", "value")])
         self.assertListEqual(L, [(inst, innersock, None, inst.adj)])
 
+    @unittest.skipIf(
+        sys.platform.startswith("win"),
+        "This test is not supported on Windows"
+    )
     def test_port_bind_failure_logging(self):
         # ensure the address is logged on a failed port bind
 
@@ -322,12 +327,6 @@ class TestWSGIServer(unittest.TestCase):
 
         # a third app should fail the bind to the fist app's host+port
         with self.assertLogs("waitress", level="ERROR") as cm_log:
-            try:
-                inst_c = self._makeOne(port=8080)
-            except Exception as exc1:
-                print("??????????????")
-                print(exc1)
-                print("??????????????")
             with self.assertRaises(OSError) as cm:
                 inst_c = self._makeOne(port=8080)
             self.assertTrue(
