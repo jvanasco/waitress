@@ -322,6 +322,12 @@ class TestWSGIServer(unittest.TestCase):
 
         # a third app should fail the bind to the fist app's host+port
         with self.assertLogs("waitress", level="ERROR") as cm_log:
+            try:
+                inst_c = self._makeOne(port=8080)
+            except Exception as exc1:
+                print("??????????????")
+                print(exc1)
+                print("??????????????")
             with self.assertRaises(OSError) as cm:
                 inst_c = self._makeOne(port=8080)
             self.assertTrue(
