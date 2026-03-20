@@ -333,9 +333,12 @@ class TestWSGIServer(unittest.TestCase):
             "CRITICAL:waitress:Failed bind to: ('127.0.0.1', 8080)",
             cm_log.output,
         )
-        self.assertIn(
-            "CRITICAL:waitress:Exception raised: [Errno 48] Address already in use",
-            cm_log.output,
+        self.assertTrue(
+            ("CRITICAL:waitress:Exception raised: [Errno 48] Address already in use"
+             in cm_log.output)
+             or
+            ("CRITICAL:waitress:Exception raised: [Errno 98] Address already in use"
+             in cm_log.output)
         )
 
 
