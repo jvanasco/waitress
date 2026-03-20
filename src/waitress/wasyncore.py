@@ -375,8 +375,8 @@ class dispatcher:
         try:
             return self.socket.bind(addr)
         except Exception as exc:
-            self.logger.log(logging.CRITICAL, "Failed bind to: %s" % addr)
-            self.logger.log(logging.CRITICAL, "Exception raised: %s" % str(addr))
+            self.logger.log(logging.CRITICAL, "Failed bind to: %s" % str(addr))
+            self.logger.log(logging.CRITICAL, "Exception raised: %s" % str(exc))
             raise
 
 
