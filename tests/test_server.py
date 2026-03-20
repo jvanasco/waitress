@@ -313,8 +313,7 @@ class TestWSGIServer(unittest.TestCase):
         self.assertListEqual(L, [(inst, innersock, None, inst.adj)])
 
     @unittest.skipIf(
-        sys.platform.startswith("win"),
-        "This test is not supported on Windows"
+        sys.platform.startswith("win"), "This test is not supported on Windows"
     )
     def test_port_bind_failure_logging(self):
         # ensure the address is logged on a failed port bind
