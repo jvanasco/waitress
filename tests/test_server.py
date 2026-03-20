@@ -334,11 +334,15 @@ class TestWSGIServer(unittest.TestCase):
             cm_log.output,
         )
         self.assertTrue(
-            ("CRITICAL:waitress:Exception raised: [Errno 48] Address already in use"
-             in cm_log.output)
+            (
+                "CRITICAL:waitress:Exception raised: [Errno 48] Address already in use"
+                in cm_log.output
+            )
              or
-            ("CRITICAL:waitress:Exception raised: [Errno 98] Address already in use"
-             in cm_log.output)
+            (
+                "CRITICAL:waitress:Exception raised: [Errno 98] Address already in use"
+                 in cm_log.output
+            )
         )
 
 

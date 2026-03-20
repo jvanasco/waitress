@@ -379,7 +379,6 @@ class dispatcher:
             self.logger.log(logging.CRITICAL, "Exception raised: %s" % str(exc))
             raise
 
-
     def accept(self):
         # XXX can return either an address pair or None
         try:
