@@ -338,10 +338,9 @@ class TestWSGIServer(unittest.TestCase):
                 "CRITICAL:waitress:Exception raised: [Errno 48] Address already in use"
                 in cm_log.output
             )
-             or
-            (
+            or (
                 "CRITICAL:waitress:Exception raised: [Errno 98] Address already in use"
-                 in cm_log.output
+                in cm_log.output
             )
         )
 
